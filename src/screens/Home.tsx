@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
 const SignUpScreen: React.FC = () => {
+    const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSignUp = () => {
         // Implement your sign-up logic here
         console.log('Sign up button pressed');
+        navigation.navigate('Extra' as never);
     };
 
     return (
