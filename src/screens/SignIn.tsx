@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 
 // Define the type for the navigation prop
 type RootStackParamList = {
@@ -33,7 +34,7 @@ type Props = {
 const SignInScreen: React.FC<Props> = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+    const navigation = useNavigation();
   const handleSignIn = () => {
     if (!email || !password) {
       Alert.alert('Error', 'Please fill in all fields');
@@ -72,7 +73,7 @@ const SignInScreen: React.FC<Props> = () => {
 
       <TouchableOpacity
         style={styles.forgotPassword}
-        onPress={() => navigation.navigate('ForgotPassword')}>
+        onPress={() => navigation.navigate('ForgotPassword' as never)}>
         <Text style={styles.forgotPasswordText}>Forgot password?</Text>
       </TouchableOpacity>
 
@@ -94,7 +95,7 @@ const SignInScreen: React.FC<Props> = () => {
 
 {/* Design Changes */}
 
-      <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+      <TouchableOpacity onPress={() => navigation.navigate('SignUp' as never)}>
         <Text style={styles.signUpText}>
           Don’t have an account? <Text style={styles.signUpLink}>SIGN UP</Text>
         </Text>

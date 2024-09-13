@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/Home';
 import SignIn from '../screens/SignIn';
 import SignUpScreen from '../screens/SignUp';
-
+import ForgotPassword from '../screens/ForgotPassword';
 const Stack = createStackNavigator();
 
 const RootNav = () => {
@@ -19,7 +19,10 @@ const RootNav = () => {
                     <Stack.Screen name="Home" component={Home} />
                 ) : (
                     <><Stack.Screen name="SignIn" component={SignIn} />
-                    <Stack.Screen name="SignUp" component={SignUpScreen} /></>
+                    <Stack.Screen name="SignUp" component={SignUpScreen} />
+                    <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+                    
+                    </>
                 )}
             </Stack.Navigator>
         </NavigationContainer>
