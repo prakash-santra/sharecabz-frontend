@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 200,
-    backgroundColor: '#8CC63F', // Green color
+    backgroundColor: '#8CC63F', 
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
     zIndex: -1,
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   logo: {
-    width: 200, // Increase the size of the logo
+    width: 200, 
     height: 250,
     alignSelf: 'center',
     marginTop: 50,
