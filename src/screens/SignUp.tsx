@@ -45,7 +45,6 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
     confirmPassword: '',
   });
 
-  // Correctly type the "name" parameter
   const handleChange = (name: keyof FormData, value: string) => {
     setFormData({
       ...formData,
@@ -96,28 +95,30 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.header} />
 
-      <Text style={styles.title}>SIGN UP</Text>
+      <View style={styles.formContainer}>
+        <Text style={styles.title}>SIGN UP</Text>
 
-      <Image
-        source={require('../../assets/Images/logo.jpg')} // Replace with actual logo
-        style={styles.logo}
-      />
+        <Image
+          source={require('../../assets/Images/logo.jpg')} // Replace with actual logo
+          style={styles.logo}
+        />
 
-      {renderInputField('User Name', 'username')}
-      {renderInputField('Phone Number', 'phoneNumber')}
-      {renderInputField('E-mail', 'email')}
-      {renderInputField('Password', 'password', true)}
-      {renderInputField('Confirm Password', 'confirmPassword', true)}
+        {renderInputField('User Name', 'username')}
+        {renderInputField('Phone Number', 'phoneNumber')}
+        {renderInputField('E-mail', 'email')}
+        {renderInputField('Password', 'password', true)}
+        {renderInputField('Confirm Password', 'confirmPassword', true)}
 
-      <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
-        <Text style={styles.signUpButtonText}>SIGN UP</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
+          <Text style={styles.signUpButtonText}>SIGN UP</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
-        <Text style={styles.signInText}>
-          Already have an account? <Text style={styles.signInLink}>SIGN IN</Text>
-        </Text>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+          <Text style={styles.signInText}>
+            Already have an account? <Text style={styles.signInLink}>SIGN IN</Text>
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -125,29 +126,47 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingHorizontal: 20,
+    backgroundColor: '#8CC63F', // Green background
+    justifyContent: 'center',    // Center vertically
+    alignItems: 'center',        // Center horizontally
   },
   header: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
     height: 200,
-    backgroundColor: '#8CC63F', // Green color
+    backgroundColor: '#8CC63F',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
+    zIndex: -1,
+  },
+  formContainer: {
+    width: '90%',
+    maxWidth: 400, // Optional: set a max width for better appearance on large screens
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 20,
     color: '#000',
+    marginVertical: 20,
   },
   logo: {
-    width: 100,
+    width: 200,
     height: 100,
-    alignSelf: 'center',
     marginBottom: 20,
   },
   inputContainer: {
+    width: '100%',
     marginBottom: 15,
   },
   input: {
@@ -164,6 +183,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginVertical: 20,
     alignItems: 'center',
+    width: '100%',
   },
   signUpButtonText: {
     color: '#fff',
