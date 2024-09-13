@@ -28,7 +28,9 @@ type Props = {
   navigation: SignInScreenNavigationProp;
 };
 
-const SignInScreen: React.FC<Props> = ({ navigation }) => {
+//Change in usestate
+
+const SignInScreen: React.FC<Props> = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -89,6 +91,8 @@ const SignInScreen: React.FC<Props> = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
+
+{/* Design Changes */}
 
       <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.signUpText}>
