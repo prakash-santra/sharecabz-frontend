@@ -5,6 +5,8 @@ import * as Font from 'expo-font';
 import Home from './src/screens/Home';
 import Extra from './src/screens/Extra';
 import LoadingScreen from './src/components/LoadingScreen';
+import SignIn from './src/screens/SignIn';
+import RootNav from './src/navigation/RootNav';
 
 // Define the stack navigator
 const Stack = createStackNavigator();
@@ -21,6 +23,7 @@ function MyStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Extra" component={Extra} />
+      <Stack.Screen name="SignIn" component={SignIn} />
     </Stack.Navigator>
   );
 }
@@ -39,8 +42,6 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    <RootNav/>
   );
 }
