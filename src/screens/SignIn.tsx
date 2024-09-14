@@ -39,6 +39,7 @@ const SignInScreen: React.FC<Props> = () => {
       return;
     }
     Alert.alert('Sign In', `Welcome, ${email}`);
+    navigation.navigate('Home' as never);
   };
 
   return (
@@ -70,7 +71,7 @@ const SignInScreen: React.FC<Props> = () => {
           onChangeText={setPassword}
         />
 
-        <TouchableOpacity
+        <TouchableOpacity 
           style={styles.forgotPassword}
           onPress={() => navigation.navigate('ForgotPassword' as never)}
         >
@@ -108,7 +109,7 @@ const SignInScreen: React.FC<Props> = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#8CC63F', 
+    backgroundColor: '#81D742', 
     justifyContent: 'center',    
     alignItems: 'center',        
   },
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 200,
-    backgroundColor: '#8CC63F',
+    backgroundColor: '#81D742',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
     zIndex: -1,
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
     color: '#7A7A7A',
   },
   signInButton: {
-    backgroundColor: '#8CC63F',
+    backgroundColor: '#81D742',
     paddingVertical: 15,
     borderRadius: 25,
     marginVertical: 20,
@@ -195,7 +196,7 @@ const styles = StyleSheet.create({
     color: '#7A7A7A',
   },
   signUpLink: {
-    color: '#8CC63F',
+    color: '#81D742',
     fontWeight: 'bold',
   },
 });

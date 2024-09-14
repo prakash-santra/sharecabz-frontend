@@ -126,7 +126,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#8CC63F', // Green background
+    backgroundColor: '#81D742', // Green background
     justifyContent: 'center',    // Center vertically
     alignItems: 'center',        // Center horizontally
   },
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 200,
-    backgroundColor: '#8CC63F',
+    backgroundColor: '#81D742',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
     zIndex: -1,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   signUpButton: {
-    backgroundColor: '#8CC63F',
+    backgroundColor: '#81D742',
     paddingVertical: 15,
     borderRadius: 25,
     marginVertical: 20,
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     color: '#7A7A7A',
   },
   signInLink: {
-    color: '#8CC63F',
+    color: '#81D742',
     fontWeight: 'bold',
   },
 });

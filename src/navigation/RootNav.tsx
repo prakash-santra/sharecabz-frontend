@@ -21,6 +21,7 @@ const RootNav = () => {
                     <><Stack.Screen name="SignIn" component={SignIn} />
                     <Stack.Screen name="SignUp" component={SignUpScreen} />
                     <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+                    <Stack.Screen name="Home" component={Home} />
                     
                     </>
                 )}
