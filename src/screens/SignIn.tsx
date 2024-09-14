@@ -11,7 +11,9 @@ import {
 import { FontAwesome } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 
+import { login } from '../utils/Slice'; 
 // Define the type for the navigation prop
 type RootStackParamList = {
   SignIn: undefined;
@@ -33,11 +35,13 @@ const SignInScreen: React.FC<Props> = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
-  const handleSignIn = () => {
+  const dispatch = useDispatch();
+  const handleSignIn = async() => {
     if (!email || !password) {
       Alert.alert('Error', 'Please fill in all fields');
       return;
     }
+    await dispatch(login());
     Alert.alert('Sign In', `Welcome, ${email}`);
     navigation.navigate('Home' as never);
   };

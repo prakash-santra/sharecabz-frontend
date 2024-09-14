@@ -1,32 +1,21 @@
 import React, { useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as Font from 'expo-font';
-import Home from './src/screens/Home';
 import Extra from './src/screens/Extra';
 import LoadingScreen from './src/components/LoadingScreen';
-import SignIn from './src/screens/SignIn';
 import RootNav from './src/navigation/RootNav';
+import { Provider } from 'react-redux';
 
+import { store } from './src/utils/Store';  // Import your store
 // Define the stack navigator
 const Stack = createStackNavigator();
 
-// Function to fetch fonts
 const fetchFonts = () => {
   return Font.loadAsync({
     'RobotoSlab-Variable': require('./assets/fonts/RobotoSlab-VariableFont_wght.ttf'),
   });
 };
 
-function MyStack() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Extra" component={Extra} />
-      <Stack.Screen name="SignIn" component={SignIn} />
-    </Stack.Navigator>
-  );
-}
 
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false);
@@ -41,7 +30,8 @@ export default function App() {
     );
   }
 
-  return (
+  return (<Provider store={store}>
     <RootNav/>
+    </Provider>
   );
 }

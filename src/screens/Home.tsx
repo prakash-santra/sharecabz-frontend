@@ -1,11 +1,16 @@
 import React from 'react';
 import { View, ImageBackground, StyleSheet, Text,TouchableOpacity } from 'react-native';
 
+import { useDispatch } from 'react-redux';
+import { login } from '../utils/Slice'; 
 import { useNavigation } from '@react-navigation/native';
 const HomeScreen = () => {
     const navigation = useNavigation();
+    const dispatch = useDispatch();
     const handleButtonPress = () => {
-       // navigation.navigate('Book' as never); will be fixing soon
+        dispatch(login());
+        console.log()
+       navigation.navigate('Book' as never); 
     }
     return (
         <View style={styles.container}>
