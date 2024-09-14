@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         letterSpacing:0.5 // Adjusted to move it higher
     },
     luxuryText: {
-        fontFamily: 'Roboto Slab',
+        fontFamily: 'Roboto',
         fontSize: 40,
         color: '#3B3B3B',
         fontWeight: 'bold',
