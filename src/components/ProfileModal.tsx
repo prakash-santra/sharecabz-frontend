@@ -66,7 +66,7 @@ const ProfileModal = (str:any) => {
                 <Text style={styles.optionText}>Contact Us</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.option}>
+              <TouchableOpacity onPress={()=>{navigation.navigate("Policy" as never)}} style={styles.option}>
                 <Text style={styles.optionText}>Cancellation Policy</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.option}>
