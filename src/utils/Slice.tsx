@@ -20,3 +20,6 @@ export const { login, logout } = authSlice.actions;
 export const selectIsAuthenticated = (state: { auth: { isAuthenticated: any; }; }) => state.auth.isAuthenticated;
 
 export default authSlice.reducer;
+
+
+
