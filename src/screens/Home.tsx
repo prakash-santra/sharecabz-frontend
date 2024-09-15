@@ -39,6 +39,7 @@ const HomeScreen = () => {
                 </TouchableOpacity>
             </ImageBackground>
         </View>
+
     );
 };
 
