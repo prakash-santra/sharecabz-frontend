@@ -10,8 +10,10 @@ import {
   Dimensions,
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-const ProfileModal = () => {
+const ProfileModal = (str:any) => {
+  const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
@@ -24,10 +26,14 @@ const ProfileModal = () => {
     <View style={styles.container}>
 
       <TouchableOpacity onPress={toggleModal}>
-        <Image
+        {str?<Image
          source={require('../../assets/Images/profile_image.png')} 
           style={styles.profileImage}
+        />:<Image
+         source={{uri:str}} 
+          style={styles.profileImage}
         />
+        }
       </TouchableOpacity>
 
       {/* Modal */}
@@ -66,7 +72,7 @@ const ProfileModal = () => {
               <TouchableOpacity style={styles.option}>
                 <Text style={styles.optionText}>Terms & Conditions</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.option}>
+              <TouchableOpacity onPress={()=>{navigation.navigate("ProfileScreen" as never )}} style={styles.option}>
                 <Text style={styles.optionText}>Settings</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.option}>
@@ -102,7 +108,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+    backgroundColor: 'rgba(0, 0, 0, 0.2)', 
   },
   modalContent: {
     backgroundColor: '#fff',

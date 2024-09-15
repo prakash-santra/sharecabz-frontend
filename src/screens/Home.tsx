@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, ImageBackground, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { View, ImageBackground, StyleSheet, Text, TouchableOpacity, Image, SafeAreaView, Dimensions, Modal } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { login } from '../utils/Slice'; 
+import { login } from '../utils/Slice';
 import { useNavigation } from '@react-navigation/native';
+import ProfileModal from '../components/ProfileModal';
+const { width, height } = Dimensions.get('window');
 
 const HomeScreen = () => {
     const navigation = useNavigation();
@@ -10,35 +12,40 @@ const HomeScreen = () => {
 
     const handleButtonPress = () => {
         dispatch(login());
-        navigation.navigate('Book' as never); 
+        navigation.navigate('Book' as never);
     }
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <ImageBackground
                 source={require('../../assets/image.png')}
                 style={styles.backgroundImage}
             >
-                <View style={styles.header}>
-                    <Image
-                        source={require('../../assets/home_logo.png')}
-                        style={styles.logo}
-                    />
-                    <Image
-                        source={require('../../assets/home_profile.png')}
-                        style={styles.profilePicture}
-                    />
+                <View style={styles.content}>
+                    <View style={styles.header}>
+                        <Image
+                            source={require('../../assets/home_logo.png')}
+                            style={styles.logo}
+                            resizeMode="contain"
+                        />
+                        <ProfileModal />
+                    </View>
+                        <Text style={styles.introText}>We are introducing ShareCabz.</Text>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.luxuryText}>
+                            Luxury{'\n'}Ride Sharing{'\n'}Service
+                        </Text>
+                        <Text style={styles.description}>
+                            Sharecabz offers a user-friendly platform for booking rides with confidence. 
+                            Enjoy seamless payments, comfortable vehicles, and top-tier service for a smooth travel experience.
+                        </Text>
+                        <TouchableOpacity onPress={handleButtonPress} style={styles.button}>
+                            <Text style={styles.buttonText}>Get Your Ride Now</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-                <Text style={styles.introText}>We are introducing ShareCabz.</Text>
-                <Text style={styles.luxuryText}>
-                    Luxury{'\n'}Ride Sharing{'\n'} Service
-                </Text>
-                <Text style={styles.description}>Sharecabz offers a user-friendly platform for booking rides with confidence. Enjoy seamless payments, comfortable vehicles, and top-tier service for a smooth travel experience.</Text>
-                <TouchableOpacity onPress={handleButtonPress} style={styles.button}>
-                    <Text style={styles.buttonText}>Get Your Ride Now</Text>
-                </TouchableOpacity>
             </ImageBackground>
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -46,72 +53,67 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+    },
+    content: {
+        flex: 1,
+        padding: width * 0.05,
+    },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: 10,
-        marginTop: 1,
+        marginBottom: height * 0.02,
     },
     logo: {
-        width: 160,
-        height: 40,
-        top: -100,
-        left: -10
+        width: width * 0.4,
+        height: height * 0.05,
     },
     profilePicture: {
-        width: 55,
-        height: 55,
-        top: -100,
-        borderRadius: 25,
-        
+        width: width * 0.13,
+        height: width * 0.13,
+        borderRadius: (width * 0.13) / 2,
+    },
+    textContainer: {
+        width: width * 0.66, // 2/3 of screen width
+        height: height * 0.66, // 2/3 of screen height
+        justifyContent: 'flex-end', // Align content to the bottom of this container
+        paddingBottom: height * 0.05, // Add some padding at the bottom
     },
     introText: {
         fontFamily: 'Roboto',
-        fontSize: 25,
+        fontSize: width * 0.05,
         color: '#449906',
         fontWeight: 'bold',
-        marginLeft: 20,
-        marginTop: 20,
-        letterSpacing:0.5 // Adjusted to move it higher
+        letterSpacing: 0.5,
     },
     luxuryText: {
         fontFamily: 'Roboto',
-        fontSize: 40,
+        fontSize: width * 0.08,
         color: '#3B3B3B',
         fontWeight: 'bold',
-        marginLeft: 20,
-        marginTop: 20,
-        marginBottom: 10,
-        letterSpacing:1
+        marginBottom: height * 0.02,
+        letterSpacing: 1,
     },
     description: {
         fontFamily: 'Roboto',
-        display: 'flex',
-        fontSize: 17,
+        fontSize: width * 0.04,
         color: 'black',
-        marginLeft: 20,
-        marginRight: 150,
-        marginTop: 20,
-        marginBottom: 170,
-    },
-    backgroundImage: {
-        flex: 1,
-        resizeMode: 'cover',
-        justifyContent: 'center',
+        marginBottom: height * 0.03,
+        lineHeight: width * 0.06,
     },
     button: {
         backgroundColor: '#2C2C2C',
-        width: '80%',
         borderRadius: 10,
-        marginLeft: 50,
-        marginTop: 50,
-        padding: 20,
+        padding: width * 0.04,
+        alignSelf: 'flex-start',
     },
     buttonText: {
         color: '#FFFFFF',
-        textAlign: 'center',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: width * 0.04,
     },
 });
 

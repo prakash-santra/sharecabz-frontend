@@ -120,7 +120,15 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
   const handleConfirmChanges = () => {
     console.log('User data updated:', userData);
     setIsChanged(false);
-    Alert.alert('Changes Confirmed', 'Your profile has been updated successfully!');
+    Alert.alert('Confirm Changes', 'Are you sure?', [
+      
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'Yes', onPress: () => console.log('user details updated success')},
+    ]);
   };
 
   const openKeyboard = (field: keyof typeof inputRefs) => {
@@ -157,7 +165,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
 
       {/* Info Section */}
       <View style={styles.infoContainer}>
-        {(['name', 'phoneNumber', 'email', 'password', 'feedback'] as Array<keyof typeof userData>).map((field, index) => (
+        {(['name', 'phone Number', 'email', 'password', 'feedback'] as Array<keyof typeof userData>).map((field, index) => (
           <View style={styles.infoItem} key={index}>
             <Text style={styles.infoLabel}>{field.charAt(0).toUpperCase() + field.slice(1)}</Text>
             <View style={styles.inputWithIcon}>
@@ -193,7 +201,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
           disabled={!isChanged}
         >
           <Text style={[styles.buttonText, { color: isChanged ? '#fff' : 'green' }]}>
-            Confirm Changes
+            Done
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.signOutButton} onPress={handleSignOut}>
@@ -313,7 +321,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 20,
     borderWidth: 1,
-    marginRight: 110,
+    marginRight: 90,
   },
   signOutButton: {
     flexDirection: 'row',
