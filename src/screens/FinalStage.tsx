@@ -4,6 +4,8 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Linking } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateField } from '../utils/JsonSlice';
 
 type RootStackParamList = {
   RideBookingScreen: undefined;
@@ -26,6 +28,12 @@ const RideBookingScreen: React.FC<Props> = ({ navigation }) => {
     departureTime: '07:00',
   });
   const [passengerCount, setPassengerCount] = useState(1);
+  
+  const dispatch = useDispatch();
+  const handleUpdate = (f:any,v:any) =>{
+  dispatch(updateField({ field: f, value: v })); 
+} 
+  const jsonData = useSelector((state:any) => state.jsonData.data); 
    // Fetch data from backend on component mount
   // useEffect(() => {
   //   fetchSeatData();
@@ -50,10 +58,12 @@ const RideBookingScreen: React.FC<Props> = ({ navigation }) => {
 
   const incrementPassenger = () => {
     setPassengerCount((prev) => (prev < 8 ? prev + 1 : prev));
+    handleUpdate('passengerno',passengerCount);
   };
 
   const decrementPassenger = () => {
     setPassengerCount((prev) => (prev > 1 ? prev - 1 : prev));
+    handleUpdate('passengerno',passengerCount);
   };
 
   return (
@@ -77,9 +87,9 @@ const RideBookingScreen: React.FC<Props> = ({ navigation }) => {
       {/* Ride Information Card */}
       <View style={styles.infoCard}>
         <LinearGradient colors={['#84FAB0', '#8FD3F4']} style={styles.gradientBox}>
-          <Text style={styles.routeText}>Gangtok</Text>
+          <Text style={styles.routeText}>{jsonData.source.label}</Text>
           <FontAwesome name="bus" size={24} color="black" />
-          <Text style={styles.routeText}>Nathula</Text>
+          <Text style={styles.routeText}>{jsonData.destination.label}</Text>
           <Text style={styles.timeText}>2 hrs</Text>
         </LinearGradient>
 
