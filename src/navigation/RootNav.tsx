@@ -8,7 +8,7 @@ import Home from '../screens/Home';
 import BookLuxuryRideScreen from '../screens/BookLuxaryRide';
 import SignIn from '../screens/SignIn';
 import SignUpScreen from '../screens/SignUp';
-import ForgotPassword from '../screens/ForgotPassword';
+import ForgotPassword from '../screens/ForgetPasswordScreen';
 // import FinalStage from '../screens/FinalStage'
 
 const Stack = createStackNavigator();

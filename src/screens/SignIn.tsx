@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 
 import { login } from '../utils/Slice'; 
+import ForgetPasswordScreen from './ForgetPasswordScreen';
 // Define the type for the navigation prop
 type RootStackParamList = {
   SignIn: undefined;
