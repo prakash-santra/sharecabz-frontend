@@ -12,6 +12,7 @@ const HomeScreen = () => {
         dispatch(login());
         navigation.navigate('Book' as never); 
     }
+    
 
     return (
         <View style={styles.container}>
@@ -31,7 +32,7 @@ const HomeScreen = () => {
                 </View>
                 <Text style={styles.introText}>We are introducing ShareCabz.</Text>
                 <Text style={styles.luxuryText}>
-                    Luxury{'\n'}Ride Sharing{'\n'} Service
+                    Luxury{'\n'}Ride Sharing{'\n'}Service
                 </Text>
                 <Text style={styles.description}>Sharecabz offers a user-friendly platform for booking rides with confidence. Enjoy seamless payments, comfortable vehicles, and top-tier service for a smooth travel experience.</Text>
                 <TouchableOpacity onPress={handleButtonPress} style={styles.button}>
