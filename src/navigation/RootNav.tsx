@@ -8,10 +8,10 @@ import Home from '../screens/Home';
 import BookLuxuryRideScreen from '../screens/BookLuxaryRide';
 import SignIn from '../screens/SignIn';
 import SignUpScreen from '../screens/SignUp';
-import ForgotPassword from '../screens/ForgotPassword';
+import ForgotPassword from '../screens/ForgetPasswordScreen';
 import CancellationPopUpScreen from '../screens/CancellationPopUp';
 import CancellationPolicyScreen from '../screens/Cancellation_Policy';
-// import FinalStage from '../screens/FinalStage'
+import FinalStage from '../screens/FinalStage'
 // import ProfileScreen from '../screens/Profile';
 
 const Stack = createStackNavigator();
@@ -31,7 +31,7 @@ const MainStack = () => (
     <Stack.Screen name="Cancel" component={CancellationPopUpScreen} />
     <Stack.Screen name="Policy" component={CancellationPolicyScreen} />
 
-    {/* <Stack.Screen name="FinalScreen" component={FinalStage} /> */}
+     <Stack.Screen name="FinalScreen" component={FinalStage} /> 
     {/* <Stack.Screen name="ProfileScreen" component={ProfileScreen} /> */}
   </Stack.Navigator>
 );
