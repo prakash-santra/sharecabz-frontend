@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
   Image,
   Alert,
 } from 'react-native';
@@ -12,10 +11,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
+import { login } from '../utils/Slice';
 
-import { login } from '../utils/Slice'; 
-import ForgetPasswordScreen from './ForgetPasswordScreen';
-// Define the type for the navigation prop
 type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
@@ -37,7 +34,8 @@ const SignInScreen: React.FC<Props> = () => {
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const handleSignIn = async() => {
+
+  const handleSignIn = async () => {
     if (!email || !password) {
       Alert.alert('Error', 'Please fill in all fields');
       return;
@@ -48,19 +46,19 @@ const SignInScreen: React.FC<Props> = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header} />
+    <View className="flex-1 bg-[#81D742] justify-center items-center">
+      <View className="absolute top-0 left-0 right-0 h-52 bg-[#81D742] rounded-b-3xl" />
 
-      <View style={styles.formContainer}>
-        <Text style={styles.title}>SIGN IN</Text>
+      <View className="w-11/12 max-w-md bg-white rounded-xl p-5 shadow-md items-center">
+        <Text className="text-3xl font-bold text-black mb-5">SIGN IN</Text>
 
         <Image
-          source={require('../../assets/Images/logo-removebg-preview.png')} 
-          style={styles.logo}
+          source={require('../../assets/Images/logo-removebg-preview.png')}
+          className="w-52 h-36 mb-5"
         />
 
         <TextInput
-          style={styles.input}
+          className="border border-gray-300 rounded-full py-3 px-4 my-2 w-full text-black"
           placeholder="Email"
           placeholderTextColor="#7A7A7A"
           value={email}
@@ -68,7 +66,7 @@ const SignInScreen: React.FC<Props> = () => {
         />
 
         <TextInput
-          style={styles.input}
+          className="border border-gray-300 rounded-full py-3 px-4 my-2 w-full text-black"
           placeholder="Password"
           placeholderTextColor="#7A7A7A"
           secureTextEntry
@@ -76,20 +74,23 @@ const SignInScreen: React.FC<Props> = () => {
           onChangeText={setPassword}
         />
 
-        <TouchableOpacity 
-          style={styles.forgotPassword}
+        <TouchableOpacity
+          className="self-end my-2"
           onPress={() => navigation.navigate('ForgotPassword' as never)}
         >
-          <Text style={styles.forgotPasswordText}>Forgot password?</Text>
+          <Text className="text-gray-500">Forgot password?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.signInButton} onPress={handleSignIn}>
-          <Text style={styles.signInButtonText}>SIGN IN</Text>
+        <TouchableOpacity
+          className="bg-[#81D742] py-4 rounded-full my-5 items-center w-full"
+          onPress={handleSignIn}
+        >
+          <Text className="text-white font-bold">SIGN IN</Text>
         </TouchableOpacity>
 
-        <View style={styles.socialLoginContainer}>
-          <Text style={styles.orText}>Or Sign in with</Text>
-          <View style={styles.socialIcons}>
+        <View className="items-center my-8">
+          <Text className="text-gray-500 mb-4">Or Sign in with</Text>
+          <View className="flex-row justify-between w-44">
             <TouchableOpacity>
               <FontAwesome name="google" size={24} color="#4285F4" />
             </TouchableOpacity>
@@ -100,110 +101,14 @@ const SignInScreen: React.FC<Props> = () => {
         </View>
 
         <TouchableOpacity onPress={() => navigation.navigate('SignUp' as never)}>
-          <Text style={styles.signUpText}>
-            Don’t have an account? <Text style={styles.signUpLink}>SIGN UP</Text>
+          <Text className="text-center mt-5 text-gray-500">
+            Don’t have an account?{' '}
+            <Text className="text-[#81D742] font-bold">SIGN UP</Text>
           </Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
-
-// Styles
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#81D742', 
-    justifyContent: 'center',    
-    alignItems: 'center',        
-  },
-  header: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 200,
-    backgroundColor: '#81D742',
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-    zIndex: -1,
-  },
-  formContainer: {
-    width: '90%',
-    maxWidth: 400, 
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 5,
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: 20,
-  },
-  logo: {
-    width: 200, 
-    height: 150,
-    marginBottom: 20,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 25,
-    padding: 10,
-    marginVertical: 10,
-    paddingHorizontal: 15,
-    color: '#000',
-    width: '100%',
-  },
-  forgotPassword: {
-    alignSelf: 'flex-end',
-    marginVertical: 10,
-  },
-  forgotPasswordText: {
-    color: '#7A7A7A',
-  },
-  signInButton: {
-    backgroundColor: '#81D742',
-    paddingVertical: 15,
-    borderRadius: 25,
-    marginVertical: 20,
-    alignItems: 'center',
-    width: '100%',
-  },
-  signInButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  socialLoginContainer: {
-    alignItems: 'center',
-    marginVertical: 30,
-  },
-  orText: {
-    color: '#7A7A7A',
-    marginBottom: 15,
-  },
-  socialIcons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between', 
-    width: 200, 
-  },
-  signUpText: {
-    textAlign: 'center',
-    marginTop: 20,
-    color: '#7A7A7A',
-  },
-  signUpLink: {
-    color: '#81D742',
-    fontWeight: 'bold',
-  },
-});
 
 export default SignInScreen;
