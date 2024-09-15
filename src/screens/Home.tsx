@@ -6,6 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 import ProfileModal from '../components/ProfileModal';
 const { width, height } = Dimensions.get('window');
 
+import Icon from '@expo/vector-icons/AntDesign';
+
 const HomeScreen = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
