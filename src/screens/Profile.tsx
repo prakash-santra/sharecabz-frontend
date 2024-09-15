@@ -185,7 +185,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
       {/* Sign Out and Confirm Changes Buttons */}
       <View className="flex-row justify-between w-full">
         <TouchableOpacity
-          className={`flex-1 p-4 rounded-xl ${isChanged ? 'bg-green-500' : 'bg-gray-300'} mr-8`}
+          className={` w-2/5 p-4  rounded-xl ${isChanged ? 'bg-green-500' : 'bg-gray-300'} mr-8`}
           onPress={handleConfirmChanges}
           disabled={!isChanged}
         >
@@ -193,7 +193,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
             Done
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity className="flex-row items-center p-4 bg-white rounded-xl border border-red-500">
+        <TouchableOpacity className="flex-row w-2/5 items-center p-4 bg-white rounded-xl border border-red-500">
           <Ionicons name="log-out-outline" size={24} color="red" />
           <Text className="ml-2 text-red-500 text-lg">Sign Out</Text>
         </TouchableOpacity>

@@ -1,16 +1,18 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
-
+import { ScrollView } from 'react-native-gesture-handler';
+import Icon from '@expo/vector-icons/AntDesign';
 const CancellationPolicyScreen = () => {
   const navigation = useNavigation();
 
-  return (
+  return (<ScrollView>
+    <SafeAreaView className=' p-1'>
     <LinearGradient colors={['#b4ec51', '#429321']} style={styles.linearGradient}>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <Text style={styles.backButtonText}>Back</Text>
+      <TouchableOpacity className=' bg-slate-300 w-8 rounded-full p-1' onPress={navigation.goBack} >
+          <Icon size={20} name="arrowleft" className=" h-1/2 text-gray-500" />
         </TouchableOpacity>
         <Text style={styles.heading}>Cancellation Policy</Text>
         <View style={styles.crossContainer}>
@@ -52,6 +54,8 @@ const CancellationPolicyScreen = () => {
         </View>
       </View>
     </LinearGradient>
+    </SafeAreaView>
+    </ScrollView>
   );
 };
 
