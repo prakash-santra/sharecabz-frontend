@@ -14,6 +14,7 @@ import CancellationPolicyScreen from '../screens/Cancellation_Policy';
 import FinalStage from '../screens/FinalStage'
 import ProfileScreen from '../screens/Profile';
 import BookingDoneScreen from '../screens/BookingDone';
+import AboutUs from '../screens/AboutUs';
 
 const Stack = createStackNavigator();
 
