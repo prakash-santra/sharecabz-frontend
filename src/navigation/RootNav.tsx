@@ -41,7 +41,6 @@ const MainStack = () => (
      <Stack.Screen name="About Us" component={AboutUs} /> 
   </Stack.Navigator>
 );
-
 const RootNav = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
 
