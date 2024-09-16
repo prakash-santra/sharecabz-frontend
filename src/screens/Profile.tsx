@@ -12,6 +12,7 @@ import {
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { width } = Dimensions.get('window');
 
@@ -122,7 +123,8 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
 
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }} className="bg-white p-4">
+    <SafeAreaView className='p-4'>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }} className="bg-white">
       {/* Header with Back Button and Logo */}
       <View className="flex-row justify-between items-center mb-5">
         <TouchableOpacity onPress={handleBackPress} className="p-2">
@@ -199,6 +201,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
         </TouchableOpacity>
       </View>
     </ScrollView>
+    </SafeAreaView>
   );
 };
 
