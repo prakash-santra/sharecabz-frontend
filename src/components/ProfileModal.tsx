@@ -80,7 +80,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ profileImage }) => {
               <TouchableOpacity className="py-3 border-b border-gray-200" onPress={() => handleModalClose("ProfileScreen")}>
                 <Text className="text-center text-base">Settings</Text>
               </TouchableOpacity>
-              <TouchableOpacity className="py-3">
+              <TouchableOpacity className="py-3" onPress={() => handleModalClose("FAQ")}>
                 <Text className="text-center text-base">FAQ</Text>
               </TouchableOpacity>
             </ScrollView>
