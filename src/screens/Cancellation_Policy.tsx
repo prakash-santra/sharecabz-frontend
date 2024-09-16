@@ -10,8 +10,6 @@ const CancellationPolicyScreen = () => {
   return (<ScrollView>
     <SafeAreaView className=' p-0'>
     <LinearGradient colors={['#b4ec51', '#429321']} style={styles.linearGradient}>
-    <SafeAreaView className=' p-1'>
-    <LinearGradient colors={['#CAF880', '#71CE7E']} style={styles.linearGradient}>
       <View style={styles.container}>
       <TouchableOpacity className=' bg-slate-300 w-8 rounded-full p-2' onPress={navigation.goBack} >
           <Icon size={20} name="arrowleft" className=" h-1/2 text-gray-500" />
@@ -53,7 +51,7 @@ const CancellationPolicyScreen = () => {
             <Text style={styles.tableCell}>4</Text>
             <Text style={styles.tableCell}>Cancellations done within 4 days of time of travel</Text>
             <Text style={styles.tableCell}>100% Cancellation Charges - No Refund</Text>
-          </View>
+            </View>
         </View>
       </View>
     </LinearGradient>
