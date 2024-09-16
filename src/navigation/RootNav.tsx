@@ -15,6 +15,7 @@ import FinalStage from '../screens/FinalStage'
 import ProfileScreen from '../screens/Profile';
 import BookingDoneScreen from '../screens/BookingDone';
 import AboutUs from '../screens/AboutUs';
+import TermsScreen from '../screens/TermsAndCondition';
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,7 @@ const MainStack = () => (
     <Stack.Screen name="Cancel" component={CancellationPopUpScreen} />
     <Stack.Screen name="Policy" component={CancellationPolicyScreen} />
     <Stack.Screen name="Booking" component={BookingDoneScreen} />
+    <Stack.Screen name="Terms" component={TermsScreen} />
 
      <Stack.Screen name="FinalScreen" component={FinalStage} /> 
      <Stack.Screen name="ProfileScreen" component={ProfileScreen} /> 
