@@ -1,10 +1,10 @@
-// Import required libraries and components
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
 import { RootState } from '../utils/Store';
-import ProfileModal from '../components/ProfileModal'; // Assuming you have the ProfileModal component
+import { LinearGradient } from 'expo-linear-gradient';
+import ProfileModal from '../components/ProfileModal';
 import { useNavigation } from '@react-navigation/native';
 
 const TripDetailsScreen = () => {
@@ -21,154 +21,73 @@ const TripDetailsScreen = () => {
     navigation.goBack();
   };
 
+  const { width, height } = Dimensions.get('window');
+
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={['rgba(202, 248, 128, 0.72)', 'rgba(113, 206, 126, 0.72)']}
+      style={{ flex: 1, paddingTop: 50 }}
+    >
       {/* Top header with back button and profile modal */}
-      <View style={styles.header}>
+      <View className="absolute top-0 left-0 right-0 flex-row justify-between px-4 z-10">
         {/* Back Icon */}
-        <TouchableOpacity onPress={handleBackPress} style={styles.backButton}>
+        <TouchableOpacity onPress={handleBackPress} className="p-2 mt-14">
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
 
         {/* Profile Icon */}
-        <TouchableOpacity onPress={toggleProfileModal} style={styles.profileButton}>
-          {/* ProfileModal Component */}
+        <TouchableOpacity onPress={toggleProfileModal} className="p-2 mt-6">
           <ProfileModal modalVisible={modalVisible} toggleModal={toggleProfileModal} />
         </TouchableOpacity>
       </View>
 
       {/* Trip Illustration */}
-      <View style={styles.illustrationContainer}>
+      <View className="flex-1 items-center mt-24">
         <Image
-          source={require('../../assets/Images/bookingconfirmed.png')} 
-          style={styles.illustration}
+          source={require('../../assets/Images/bookingconfirmed.png')}
+          style={{ width: width * 0.5, height: 150 }}
+          className="resize-contain"
         />
       </View>
 
       {/* Trip Details */}
-      <View style={styles.detailsContainer}>
-        <Text style={styles.tripDetailsText}>Trip Details</Text>
-        <View style={styles.infoRow}>
-          <View style={styles.infoColumn}>
-            <Text style={styles.label}>Date</Text>
-            <Text style={styles.value}>{date || 'N/A'}</Text>
+      <View
+        style={{ top: height * 0.5 }} // Adjusted to lift the card higher
+        className="absolute bg-white bg-opacity-80 rounded-xl p-5 mx-5 w-11/12 justify-center items-center"
+      >
+        <Text className="text-2xl font-bold mb-4">Trip Details</Text>
+
+        <View className="flex-row justify-between w-full my-3">
+          <View className="items-center w-2/5">
+            <Text className="text-lg font-bold">Date</Text>
+            <Text className="text-base mt-2">{date || 'N/A'}</Text>
           </View>
-          <View style={styles.infoColumn}>
-            <Text style={styles.label}>Time</Text>
-            <Text style={styles.value}>{time || 'N/A'}</Text>
+          <View className="items-center w-2/5">
+            <Text className="text-lg font-bold">Time</Text>
+            <Text className="text-base mt-2">{time || 'N/A'}</Text>
           </View>
         </View>
 
-        <View style={styles.infoRow}>
-          <View style={styles.infoColumn}>
+        <View className="flex-row justify-between w-full my-3">
+          <View className="items-center w-2/5">
             <Ionicons name="location-sharp" size={24} color="green" />
-            <Text style={styles.value}>{source || 'Source'}</Text>
+            <Text className="text-base mt-2">{source?.label || 'Source'}</Text>
           </View>
-          <View style={styles.infoColumn}>
+          <View className="items-center w-2/5">
             <Ionicons name="location-sharp" size={24} color="red" />
-            <Text style={styles.value}>{destination || 'Destination'}</Text>
+            <Text className="text-base mt-2">{destination?.label || 'Destination'}</Text>
           </View>
         </View>
 
-        <Text style={styles.bookingId}>Booking ID: {bookingId || 'N/A'}</Text>
+        <Text className="mt-4 text-base text-gray-600">Booking ID: {bookingId || 'N/A'}</Text>
 
         {/* Cancel Ride Button */}
-        <TouchableOpacity style={styles.cancelButton}>
-          <Text style={styles.cancelButtonText}>Cancel Ride</Text>
+        <TouchableOpacity className="bg-red-600 rounded-lg py-3 px-6 mt-5">
+          <Text className="text-white text-lg font-bold">Cancel Ride</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 };
-
-// Styles for responsiveness
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-    paddingTop: 50,
-  },
-  header: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    zIndex: 10,
-  },
-  backButton: {
-    padding: 10,
-  },
-  profileButton: {
-    padding: 10,
-    alignItems: 'center',
-  },
-  profileImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-  },
-  illustrationContainer: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 100,
-  },
-  illustration: {
-    width: Dimensions.get('window').width * 0.8,
-    height: 150,
-    resizeMode: 'contain',
-  },
-  detailsContainer: {
-    flex: 2,
-    backgroundColor: '#d8f3dc',
-    borderRadius: 10,
-    padding: 20,
-    margin: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  tripDetailsText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  infoRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginVertical: 10,
-  },
-  infoColumn: {
-    alignItems: 'center',
-    width: '45%',
-  },
-  label: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  value: {
-    fontSize: 16,
-    marginTop: 5,
-  },
-  bookingId: {
-    marginTop: 20,
-    fontSize: 16,
-    color: 'grey',
-  },
-  cancelButton: {
-    backgroundColor: '#e63946',
-    borderRadius: 8,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    marginTop: 20,
-  },
-  cancelButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
 
 export default TripDetailsScreen;
