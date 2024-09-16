@@ -2,15 +2,16 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-
 const UserDetailPage = () => {
   const navigation = useNavigation();
-
   const handleBackPress = () => {
     console.log('Back button pressed');
     navigation.goBack();
   };
-
+  const fetchUserDetails = () => {
+    // Fetch user details from API
+    console.log('Fetching user details');
+  };
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View className="absolute top-1 left-0 right-0 flex-row px-2 ">

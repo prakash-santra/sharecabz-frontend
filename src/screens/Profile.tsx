@@ -13,6 +13,8 @@ import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../utils/Slice';
 
 const { width } = Dimensions.get('window');
 
@@ -30,6 +32,9 @@ interface Props {
 const ProfileScreen: React.FC<Props> = ({ navigation }) => {
   const [profileImage, setProfileImage] = useState(require('../../assets/Images/profile_image.png'));
   const [isChanged, setIsChanged] = useState(false);
+  
+  const data=useSelector((state:any) => state.profileData?.data);
+  console.log(data);
   const [userData, setUserData] = useState({
     name: 'Sonia',
     phoneNumber: '+91 XXXXXXXXXX',
@@ -37,7 +42,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
     password: '**********',
     feedback: '',
   });
-
+const dispatch = useDispatch();
   // Refs for each input field
   const inputRefs = {
     name: useRef<TextInput>(null),
@@ -62,7 +67,10 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
   const handleSignOut = () => {
     Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
       { text: 'Cancel', style: 'cancel' },
-      { text: 'Yes', onPress: () => console.log('User signed out') },
+      { text: 'Yes', onPress: () =>
+      {
+        dispatch(logout()),
+        navigation.navigate('SignIn' as never) }}
     ]);
   };
 
@@ -195,7 +203,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
             Done
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity className="flex-row w-2/5 items-center p-4 bg-white rounded-xl border border-red-500">
+        <TouchableOpacity onPress={handleSignOut} className="flex-row w-2/5 items-center p-4 bg-white rounded-xl border border-red-500">
           <Ionicons name="log-out-outline" size={24} color="red" />
           <Text className="ml-2 text-red-500 text-lg">Sign Out</Text>
         </TouchableOpacity>

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectIsAuthenticated } from "../utils/Slice";
 
 import Home from "../screens/Home";
@@ -21,6 +21,8 @@ import FaqScreen from "../screens/FAQ";
 import Activity from "../screens/TripDetails";
 
 import AdminHome from "../screens/Admin/AdminHome";
+import JsonSlice, { updateField } from "../utils/JsonSlice";
+import UserDetailPage from "../screens/Admin/UserDetailPage";
 
 const Stack = createStackNavigator();
 
@@ -47,30 +49,26 @@ const MainStack = () => (
     <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
     <Stack.Screen name="About Us" component={AboutUs} />
     <Stack.Screen name="ContactUs" component={ContactUs} />
-  </Stack.Navigator>
-);
 
-const AdminStack = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    
     <Stack.Screen name="AdminHome" component={AdminHome} />
+    <Stack.Screen name="UserDetailPage" component={UserDetailPage} />
+
   </Stack.Navigator>
 );
 
-const role = "admin";
+
+
 const RootNav = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
+  
 
+
+  
   return (
     <NavigationContainer>
-      {isAuthenticated ? (
-        role === "admin" ? (
-          <AdminStack />
-        ) : (
-          <MainStack />
-        )
-      ) : (
-        <AuthStack />
-      )}
+      {isAuthenticated ? <MainStack />: <AuthStack />
+      }
     </NavigationContainer>
   );
 };

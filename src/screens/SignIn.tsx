@@ -10,9 +10,9 @@ import {
 import { FontAwesome } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../utils/Slice';
-
+import { Data } from '../services/Data';
 type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
@@ -41,7 +41,17 @@ const SignInScreen: React.FC<Props> = () => {
       return;
     }
     await dispatch(login());
+    //TODO
+  //  await Data("a","b");
     Alert.alert('Sign In', `Welcome, ${email}`);
+
+    //TODO
+    //service callinf fn here to sign in 
+  const role=email;
+    if (role === 'admin') {
+      navigation.navigate('AdminHome' as never);
+    }
+    else
     navigation.navigate('Home' as never);
   };
 

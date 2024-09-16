@@ -16,6 +16,7 @@ const initialState: ProfileDataState = {
     phone: null,
     pic: null,
     toggle: false,
+    password: null,
   },
 };
 

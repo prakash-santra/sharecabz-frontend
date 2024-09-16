@@ -19,12 +19,14 @@ interface BookingDetailsScreenProps {
   bookings: BookingDetail[];
   onPrevious: () => void;
   onNext: () => void;
+  onPressViewDetails: (bookingId: string) => void;
 }
 
 const BookingDetails: React.FC<BookingDetailsScreenProps> = ({
   bookings,
   onPrevious,
   onNext,
+  onPressViewDetails,
 }) => {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
@@ -50,7 +52,7 @@ const BookingDetails: React.FC<BookingDetailsScreenProps> = ({
   const handlePress = (str: string) => {
     navigation.navigate(str as never);
   };
-
+ 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface ProfileModalProps {
   profileImage?: string; // Pass profile image URL if provided
@@ -21,6 +22,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ profileImage }) => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
 
+const data =useSelector((state:any) => state.jsonSlice?.data);
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
