@@ -124,15 +124,15 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <SafeAreaView className='p-4'>
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }} className="bg-white">
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }} >
       {/* Header with Back Button and Logo */}
       <View className="flex-row justify-between items-center mb-5">
         <TouchableOpacity onPress={handleBackPress} className="p-2">
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
         <Image
-          source={require('../../assets/Images/logo-removebg-preview.png')}
-          className="w-44 h-28"
+          source={require('../../assets/Images/try.png')}
+          className="w-28 h-28 self-end"
           resizeMode="contain"
         />
       </View>

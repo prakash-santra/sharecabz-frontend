@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         letterSpacing: 0.5,
     },
     luxuryText: {
-        fontFamily: 'Roboto',
+        fontFamily: 'RobotoSlab-Variable',
         fontSize: width * 0.08,
         color: '#3B3B3B',
         fontWeight: 'bold',
