@@ -1,22 +1,24 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { useSelector } from 'react-redux';
-import { selectIsAuthenticated } from '../utils/Slice';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { useSelector } from "react-redux";
+import { selectIsAuthenticated } from "../utils/Slice";
 
-import Home from '../screens/Home';
-import BookLuxuryRideScreen from '../screens/BookLuxaryRide';
-import SignIn from '../screens/SignIn';
-import SignUpScreen from '../screens/SignUp';
-import ForgotPassword from '../screens/ForgetPasswordScreen';
-import CancellationPopUpScreen from '../screens/CancellationPopUp';
-import CancellationPolicyScreen from '../screens/Cancellation_Policy';
-import FinalStage from '../screens/FinalStage'
-import ProfileScreen from '../screens/Profile';
-import BookingDoneScreen from '../screens/BookingDone';
-import AboutUs from '../screens/AboutUs';
-import TermsScreen from '../screens/TermsAndCondition';
-import ContactUs from '../screens/ContactUs';
+import Home from "../screens/Home";
+import BookLuxuryRideScreen from "../screens/BookLuxaryRide";
+import SignIn from "../screens/SignIn";
+import SignUpScreen from "../screens/SignUp";
+import ForgotPassword from "../screens/ForgetPasswordScreen";
+import CancellationPopUpScreen from "../screens/CancellationPopUp";
+import CancellationPolicyScreen from "../screens/Cancellation_Policy";
+import FinalStage from "../screens/FinalStage";
+import ProfileScreen from "../screens/Profile";
+import BookingDoneScreen from "../screens/BookingDone";
+import AboutUs from "../screens/AboutUs";
+import TermsScreen from "../screens/TermsAndCondition";
+import ContactUs from "../screens/ContactUs";
+
+import AdminHome from "../screens/Admin/AdminHome";
 
 const Stack = createStackNavigator();
 
@@ -37,18 +39,34 @@ const MainStack = () => (
     <Stack.Screen name="Booking" component={BookingDoneScreen} />
     <Stack.Screen name="Terms" component={TermsScreen} />
 
-     <Stack.Screen name="FinalScreen" component={FinalStage} /> 
-     <Stack.Screen name="ProfileScreen" component={ProfileScreen} /> 
-     <Stack.Screen name="About Us" component={AboutUs} /> 
-     <Stack.Screen name="ContactUs" component={ContactUs} /> 
+    <Stack.Screen name="FinalScreen" component={FinalStage} />
+    <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+    <Stack.Screen name="About Us" component={AboutUs} />
+    <Stack.Screen name="ContactUs" component={ContactUs} />
   </Stack.Navigator>
 );
+
+const AdminStack = () => (
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="AdminHome" component={AdminHome} />
+  </Stack.Navigator>
+);
+
+const role = "admin";
 const RootNav = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
 
   return (
     <NavigationContainer>
-      {isAuthenticated ? <MainStack /> : <AuthStack />}
+      {isAuthenticated ? (
+        role === "admin" ? (
+          <AdminStack />
+        ) : (
+          <MainStack />
+        )
+      ) : (
+        <AuthStack />
+      )}
     </NavigationContainer>
   );
 };
