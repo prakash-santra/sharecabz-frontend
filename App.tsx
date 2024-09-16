@@ -7,7 +7,7 @@ import RootNav from './src/navigation/RootNav';
 import { Provider } from 'react-redux';
 
 import { store } from './src/utils/Store';  // Import your store
-import ContactUs from './src/screens/ContactUs';
+
 // Define the stack navigator
 const Stack = createStackNavigator();
 
@@ -31,7 +31,8 @@ export default function App() {
     );
   }
 
-  return (<Provider store={store}>
+  return (
+    <Provider store={store}>
     <RootNav/>
     </Provider>
   );
