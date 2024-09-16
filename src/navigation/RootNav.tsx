@@ -17,6 +17,8 @@ import BookingDoneScreen from "../screens/BookingDone";
 import AboutUs from "../screens/AboutUs";
 import TermsScreen from "../screens/TermsAndCondition";
 import ContactUs from "../screens/ContactUs";
+import FaqScreen from "../screens/FAQ";
+import Activity from "../screens/TripDetails";
 
 import AdminHome from "../screens/Admin/AdminHome";
 
@@ -38,8 +40,10 @@ const MainStack = () => (
     <Stack.Screen name="Policy" component={CancellationPolicyScreen} />
     <Stack.Screen name="Booking" component={BookingDoneScreen} />
     <Stack.Screen name="Terms" component={TermsScreen} />
+    <Stack.Screen name="FAQ" component={FaqScreen} />
 
     <Stack.Screen name="FinalScreen" component={FinalStage} />
+    <Stack.Screen name="Activity" component={Activity} />
     <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
     <Stack.Screen name="About Us" component={AboutUs} />
     <Stack.Screen name="ContactUs" component={ContactUs} />
