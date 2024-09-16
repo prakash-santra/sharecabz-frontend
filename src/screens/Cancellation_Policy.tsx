@@ -8,28 +8,31 @@ const CancellationPolicyScreen = () => {
   const navigation = useNavigation();
 
   return (<ScrollView>
+    <SafeAreaView className=' p-0'>
+    <LinearGradient colors={['#b4ec51', '#429321']} style={styles.linearGradient}>
     <SafeAreaView className=' p-1'>
     <LinearGradient colors={['#CAF880', '#71CE7E']} style={styles.linearGradient}>
       <View style={styles.container}>
-      <TouchableOpacity className=' bg-slate-300 w-8 rounded-full p-1' onPress={navigation.goBack} >
+      <TouchableOpacity className=' bg-slate-300 w-8 rounded-full p-2' onPress={navigation.goBack} >
           <Icon size={20} name="arrowleft" className=" h-1/2 text-gray-500" />
         </TouchableOpacity>
         <Text style={styles.heading}>Cancellation Policy</Text>
         <View style={styles.crossContainer}>
           <Image source={require('../../assets/cross.png')} style={styles.crossImage} />
+          <Text className='font-bold text-lg'>Important points related to cancellation policy:</Text>
           <Text style={styles.description}>
-            {'\b'}Important points related to cancellation policy:
-            {'\n'}• This Refund Process is a 100% automated process done through a Seamless & Secure Tech algorithms. The refund amount, as applicable, will be initiated by the system on a daily basis and is usually credited into the Customer's bank Account by the Payment Gateway within 5 - 7 Business working days. We would request our Customers to have patience until then.
-            {'\n'}• The Refund Amount will reflect ONLY in the same Bank Account through which you had made the payment while making the Booking. Make sure you are checking the correct Bank Account for credit of this Refund Amount.
-            {'\n'}• The Refund Amount will reflect on your account within 5 - 7 WORKING days from the time of Cancellation. This DOES NOT include holidays.
-            {'\n'}• Please DO NOT DEPEND on SMS from your Bank for confirmation of Amount Refunded. Most of the times the Bank's SMS does not get delivered, hence we would request you to check your Online Bank Account Statement for any Refund Credits.
+            {'\n'}{'\n'}• This Refund Process is a 100% automated process done through a Seamless & Secure Tech algorithms. The refund amount, as applicable, will be initiated by the system on a daily basis and is usually credited into the Customer's bank Account by the Payment Gateway within 5 - 7 Business working days. We would request our Customers to have patience until then.
+            {'\n'}{'\n'}• The Refund Amount will reflect ONLY in the same Bank Account through which you had made the payment while making the Booking. Make sure you are checking the correct Bank Account for credit of this Refund Amount.
+            {'\n'}{'\n'}• The Refund Amount will reflect on your account within 5 - 7 WORKING days from the time of Cancellation. This DOES NOT include holidays.
+            {'\n'}{'\n'}• Please DO NOT DEPEND on SMS from your Bank for confirmation of Amount Refunded. Most of the times the Bank's SMS does not get delivered, hence we would request you to check your Online Bank Account Statement for any Refund Credits.
           </Text>
         </View>
-        <View style={styles.detailBox}>
+        <View className='my-3' style={styles.detailBox}>
+          <Text className='font-bold text-lg my-2'>Refund Policy</Text>
           <View style={styles.tableRow}>
-            <Text style={styles.tableCell}>SI.No</Text>
-            <Text style={styles.tableCell}>Category Description</Text>
-            <Text style={styles.tableCell}>Cancellation Charges</Text>
+            <Text className='font-bold my-2' style={styles.tableCell}>SI.No</Text>
+            <Text className='font-bold my-2' style={styles.tableCell}>Category Description</Text>
+            <Text className='font-bold my-2' style={styles.tableCell}>Cancellation Charges</Text>
           </View>
           <View style={styles.tableRow}>
             <Text style={styles.tableCell}>1</Text>
@@ -62,6 +65,7 @@ const CancellationPolicyScreen = () => {
 const styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
+    height: 1300
   },
   container: {
     marginHorizontal: 20,
@@ -91,7 +95,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 30,
     width: '100%',
-    height: '60%', 
+    height: '62%', 
     borderRadius: 15,
     backgroundColor: '#EFEEEE94',
     padding: 20,
