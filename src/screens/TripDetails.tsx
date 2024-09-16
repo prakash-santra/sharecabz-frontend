@@ -1,4 +1,3 @@
-// Import required libraries and components
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -22,7 +21,7 @@ const TripDetailsScreen = () => {
     navigation.goBack();
   };
 
-  const { width } = Dimensions.get('window');
+  const { width, height } = Dimensions.get('window');
 
   return (
     <LinearGradient
@@ -52,7 +51,10 @@ const TripDetailsScreen = () => {
       </View>
 
       {/* Trip Details */}
-      <View className="flex-2 bg-white bg-opacity-80 rounded-xl p-5 mx-5 justify-center items-center">
+      <View
+        style={{ top: height * 0.5 }} // Adjusted to lift the card higher
+        className="absolute bg-white bg-opacity-80 rounded-xl p-5 mx-5 w-11/12 justify-center items-center"
+      >
         <Text className="text-2xl font-bold mb-4">Trip Details</Text>
 
         <View className="flex-row justify-between w-full my-3">
@@ -69,11 +71,11 @@ const TripDetailsScreen = () => {
         <View className="flex-row justify-between w-full my-3">
           <View className="items-center w-2/5">
             <Ionicons name="location-sharp" size={24} color="green" />
-            <Text className="text-base mt-2">{source.label || 'Source'}</Text>
+            <Text className="text-base mt-2">{source?.label || 'Source'}</Text>
           </View>
           <View className="items-center w-2/5">
             <Ionicons name="location-sharp" size={24} color="red" />
-            <Text className="text-base mt-2">{destination.label || 'Destination'}</Text>
+            <Text className="text-base mt-2">{destination?.label || 'Destination'}</Text>
           </View>
         </View>
 
