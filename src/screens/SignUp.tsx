@@ -99,7 +99,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
         <Text style={styles.title}>SIGN UP</Text>
 
         <Image
-          source={require('../../assets/Images/logo.jpg')} // Replace with actual logo
+          source={require('../../assets/Images/logo.jpg')} 
           style={styles.logo}
         />
 
@@ -126,9 +126,9 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#81D742', // Green background
-    justifyContent: 'center',    // Center vertically
-    alignItems: 'center',        // Center horizontally
+    backgroundColor: '#81D742', 
+    justifyContent: 'center',    
+    alignItems: 'center',        
   },
   header: {
     position: 'absolute',
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     width: '90%',
-    maxWidth: 400, // Optional: set a max width for better appearance on large screens
+    maxWidth: 400, 
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 20,

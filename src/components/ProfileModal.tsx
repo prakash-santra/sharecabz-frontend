@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
   Image,
   Modal,
   ScrollView,
@@ -12,32 +11,35 @@ import {
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-const ProfileModal = (str:any) => {
+interface ProfileModalProps {
+  profileImage?: string; // Pass profile image URL if provided
+  modalVisible: boolean;
+  toggleModal: () => void;
+}
+
+const ProfileModal: React.FC<ProfileModalProps> = ({ profileImage }) => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
-  const handlemodalclose = (str:String) => {
-    navigation.navigate(str as never);
+
+  const handleModalClose = (screen: string) => {
+    navigation.navigate(screen as never);
     setModalVisible(!modalVisible);
-  }
+  };
 
   const screenWidth = Dimensions.get('window').width;
 
   return (
-    <View style={styles.container}>
-
-      <TouchableOpacity onPress={toggleModal}>
-        {str?<Image
-         source={require('../../assets/Images/profile_image.png')} 
-          style={styles.profileImage}
-        />:<Image
-         source={{uri:str}} 
-          style={styles.profileImage}
+    <View className="flex-1 justify-start items-end pr-5 pt-5">
+      {/* Touchable Profile Image on the Right */}
+      <TouchableOpacity onPress={toggleModal} className="flex-row justify-end items-center">
+        <Image
+          source={profileImage ? { uri: profileImage } : require('../../assets/Images/profile_image.png')}
+          className="w-12 h-12 rounded-full"
         />
-        }
       </TouchableOpacity>
 
       {/* Modal */}
@@ -47,12 +49,12 @@ const ProfileModal = (str:any) => {
         onRequestClose={toggleModal}
         animationType="slide"
       >
-        <View style={styles.modalOverlay}>
-          <View style={[styles.modalContent, { width: screenWidth * 0.8 }]}>
+        <View className="flex-1 justify-center items-center bg-black/20">
+          <View className="bg-white rounded-lg p-5" style={{ width: screenWidth * 0.8 }}>
             <ScrollView>
-              <View style={styles.modalHeader}>
-                <Text style={styles.modalTitle}>Sonia</Text>
-                <View style={styles.starsContainer}>
+              <View className="items-center mb-5">
+                <Text className="text-xl font-bold mb-1">Sonia</Text>
+                <View className="flex-row">
                   <FontAwesome name="star" size={18} color="#FFD700" />
                   <FontAwesome name="star" size={18} color="#FFD700" />
                   <FontAwesome name="star" size={18} color="#FFD700" />
@@ -60,99 +62,33 @@ const ProfileModal = (str:any) => {
               </View>
 
               {/* Modal Options */}
-              <TouchableOpacity style={styles.option}>
-                <Text style={styles.optionText}>Activity</Text>
+              <TouchableOpacity className="py-3 border-b border-gray-200" onPress={() => handleModalClose("Activity")}>
+                <Text className="text-center text-base">Activity</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.option}>
-                <Text style={styles.optionText}>About Us</Text>
+              <TouchableOpacity className="py-3 border-b border-gray-200" onPress={() => handleModalClose("About Us")}>
+                <Text className="text-center text-base">About Us</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.option}>
-                <Text style={styles.optionText}>Contact Us</Text>
+              <TouchableOpacity className="py-3 border-b border-gray-200" onPress={() => handleModalClose("ContactUs")}>
+                <Text className="text-center text-base">Contact Us</Text>
               </TouchableOpacity>
-
-              <TouchableOpacity onPress={()=>{handlemodalclose("Policy" )}} style={styles.option}>
-                <Text style={styles.optionText}>Cancellation Policy</Text>
+              <TouchableOpacity className="py-3 border-b border-gray-200" onPress={() => handleModalClose("Policy")}>
+                <Text className="text-center text-base">Cancellation Policy</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.option}>
-                <Text style={styles.optionText}>Terms & Conditions</Text>
+              <TouchableOpacity className="py-3 border-b border-gray-200" onPress={() => handleModalClose("Terms")}>
+                <Text className="text-center text-base">Terms & Conditions</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={()=>handlemodalclose("ProfileScreen")} style={styles.option}>
-                <Text style={styles.optionText}>Settings</Text>
+              <TouchableOpacity className="py-3 border-b border-gray-200" onPress={() => handleModalClose("ProfileScreen")}>
+                <Text className="text-center text-base">Settings</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.option}>
-                <Text style={styles.optionText}>FAQ</Text>
+              <TouchableOpacity className="py-3">
+                <Text className="text-center text-base">FAQ</Text>
               </TouchableOpacity>
             </ScrollView>
-
-
-            <TouchableOpacity onPress={toggleModal} style={styles.closeButton}>
-              <Text style={styles.closeButtonText}>DONE</Text>
-            </TouchableOpacity>
           </View>
         </View>
       </Modal>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    paddingTop: 50, 
-  },
-  profileImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginRight: 20,
-  },
-  modalOverlay: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.2)', 
-  },
-  modalContent: {
-    backgroundColor: '#fff',
-    borderRadius: 15,
-    padding: 20,
-    alignItems: 'center',
-  },
-  modalHeader: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  modalTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  starsContainer: {
-    flexDirection: 'row',
-  },
-  option: {
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderColor: '#ddd',
-    width: '100%',
-  },
-  optionText: {
-    fontSize: 16,
-    textAlign: 'center',
-  },
-  closeButton: {
-    backgroundColor: '#8CC63F',     
-    paddingVertical: 12,
-    paddingHorizontal: 25,
-    borderRadius: 25,
-    marginTop: 20,
-  },
-  closeButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-});
 
 export default ProfileModal;
