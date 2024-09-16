@@ -9,7 +9,7 @@ const CancellationPolicyScreen = () => {
 
   return (<ScrollView>
     <SafeAreaView className=' p-1'>
-    <LinearGradient colors={['#b4ec51', '#429321']} style={styles.linearGradient}>
+    <LinearGradient colors={['#CAF880', '#71CE7E']} style={styles.linearGradient}>
       <View style={styles.container}>
       <TouchableOpacity className=' bg-slate-300 w-8 rounded-full p-1' onPress={navigation.goBack} >
           <Icon size={20} name="arrowleft" className=" h-1/2 text-gray-500" />

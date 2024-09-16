@@ -19,7 +19,7 @@ const CancellationPopUpScreen = () => {
 return (
     <LinearGradient 
     style={styles.container}
-    colors={['#b4ec51', '#429321']}>
+    colors={['#CAF880', '#71CE7E']}>
         <Image
             source={require('../../assets/cancellation.png')}
             style={styles.image}
