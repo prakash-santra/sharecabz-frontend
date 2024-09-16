@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, ImageBackground, StyleSheet, Text, TouchableOpacity, Image, SafeAreaView, Dimensions, Modal } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { login } from '../utils/Slice';
 import { useNavigation } from '@react-navigation/native';
 import ProfileModal from '../components/ProfileModal';
+import { Ionicons } from '@expo/vector-icons';
 const { width, height } = Dimensions.get('window');
 
-import Icon from '@expo/vector-icons/AntDesign';
 
 const HomeScreen = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
+    const [modalVisible, setModalVisible] = useState(false);
 
     const handleButtonPress = () => {
         dispatch(login());
         navigation.navigate('Book' as never);
     }
+    
+    const toggleProfileModal = () => {
+        console.log('Toggling profile modal. Current state:', modalVisible);
+        setModalVisible(!modalVisible);
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -25,15 +31,20 @@ const HomeScreen = () => {
             >
                 <View style={styles.content}>
                     <View style={styles.header}>
-                        <Image
-                            source={require('../../assets/home_logo.png')}
-                            style={styles.logo}
-                            resizeMode="contain"
-                        />
-                        <ProfileModal />
+                        <View style={styles.headerContainer}>
+                            <Image
+                                style={styles.logo}
+                                source={require('../../assets/Images/logo-removebg-preview.png')}
+                            />
+                        </View>
+                        <TouchableOpacity onPress={toggleProfileModal} className="p-2 mt-6">
+                            <ProfileModal modalVisible={modalVisible} toggleModal={toggleProfileModal} />
+                        </TouchableOpacity>
                     </View>
-                        <Text style={styles.introText}>We are introducing ShareCabz.</Text>
+                        
                     <View style={styles.textContainer}>
+                        <Text style={styles.introText}>We are introducing ShareCabz.</Text>
+
                         <Text style={styles.luxuryText}>
                             Luxury{'\n'}Ride Sharing{'\n'}Service
                         </Text>
@@ -61,28 +72,27 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        padding: width * 0.05,
+    
     },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: height * 0.02,
+    },
+    headerContainer: {
+        width: 100,
+        height: 100,
+        flexDirection: 'row',
     },
     logo: {
-        width: width * 0.4,
-        height: height * 0.05,
-    },
-    profilePicture: {
-        width: width * 0.13,
-        height: width * 0.13,
-        borderRadius: (width * 0.13) / 2,
+       width: 100,
+       height: 100,
+       marginTop: 25,
     },
     textContainer: {
-        width: width * 0.66, // 2/3 of screen width
-        height: height * 0.66, // 2/3 of screen height
-        justifyContent: 'flex-end', // Align content to the bottom of this container
-        paddingBottom: height * 0.05, // Add some padding at the bottom
+        width: width * 0.65,
+        height: width * 0.7, 
+        paddingLeft: height * 0.02, 
+        paddingTop: height * 0.02,
     },
     introText: {
         fontFamily: 'Roboto',
@@ -98,10 +108,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: height * 0.02,
         letterSpacing: 1,
+        
     },
     description: {
         fontFamily: 'Roboto',
-        fontSize: width * 0.04,
+        fontSize: width * 0.035,
         color: 'black',
         marginBottom: height * 0.03,
         lineHeight: width * 0.06,
