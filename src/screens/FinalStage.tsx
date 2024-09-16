@@ -66,6 +66,10 @@ const RideBookingScreen: React.FC<Props> = ({ navigation }) => {
     handleUpdate('passengerno',passengerCount);
   };
 
+  const handelBookingConformation = () => {
+    navigation.navigate('Booking' as never); //Redirect To the Booking Conformation Page .....
+}
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Top Card with Back Button and WhatsApp Card */}
@@ -155,7 +159,7 @@ const RideBookingScreen: React.FC<Props> = ({ navigation }) => {
         </View>
 
         {/* Done Button */}
-        <TouchableOpacity style={styles.doneButton}>
+        <TouchableOpacity onPress = {handelBookingConformation} style={styles.doneButton}>
           <Text style={styles.doneButtonText}>DONE</Text>
         </TouchableOpacity>
       </View>
