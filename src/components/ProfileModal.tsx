@@ -23,6 +23,10 @@ const ProfileModal = (str:any) => {
     navigation.navigate(str as never);
     setModalVisible(!modalVisible);
   }
+  const handelTerms = (str:String) => {
+    navigation.navigate(str as never);
+    setModalVisible(!modalVisible);
+  }
 
   const screenWidth = Dimensions.get('window').width;
 
@@ -73,7 +77,7 @@ const ProfileModal = (str:any) => {
               <TouchableOpacity onPress={()=>{handlemodalclose("Policy" )}} style={styles.option}>
                 <Text style={styles.optionText}>Cancellation Policy</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.option}>
+              <TouchableOpacity onPress={()=>{handelTerms("Terms")}} style={styles.option}>
                 <Text style={styles.optionText}>Terms & Conditions</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={()=>handlemodalclose("ProfileScreen")} style={styles.option}>
