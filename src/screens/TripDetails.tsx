@@ -20,6 +20,9 @@ const TripDetailsScreen = () => {
   const handleBackPress = () => {
     navigation.goBack();
   };
+  const handelCancelPress = () => {
+    navigation.navigate('Cancel' as never); //Redirect To the Cancellation PopUp Page .....
+}
 
   const { width, height } = Dimensions.get('window');
 
@@ -82,7 +85,7 @@ const TripDetailsScreen = () => {
         <Text className="mt-4 text-base text-gray-600">Booking ID: {bookingId || 'N/A'}</Text>
 
         {/* Cancel Ride Button */}
-        <TouchableOpacity className="bg-red-600 rounded-lg py-3 px-6 mt-5">
+        <TouchableOpacity className="bg-red-600 rounded-lg py-3 px-6 mt-5" onPress={handelCancelPress}>
           <Text className="text-white text-lg font-bold">Cancel Ride</Text>
         </TouchableOpacity>
       </View>

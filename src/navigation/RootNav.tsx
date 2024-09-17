@@ -22,7 +22,8 @@ import Activity from "../screens/TripDetails";
 
 import AdminHome from "../screens/Admin/AdminHome";
 import JsonSlice, { updateField } from "../utils/JsonSlice";
-import UserDetailPage from "../screens/Admin/UserDetailPage";
+import UserDetailPage from "../screens/admin/UserDetailPage";
+import AllotmentStatusPage from "../screens/DriverAllotmentStatus";
 // import DriverAllocation from "../screens/Admin/DriverAllocation"
 
 const Stack = createStackNavigator();
@@ -44,6 +45,7 @@ const MainStack = () => (
     <Stack.Screen name="Booking" component={BookingDoneScreen} />
     <Stack.Screen name="Terms" component={TermsScreen} />
     <Stack.Screen name="FAQ" component={FaqScreen} />
+    <Stack.Screen name="Status" component={AllotmentStatusPage} />
 
     <Stack.Screen name="FinalScreen" component={FinalStage} />
     <Stack.Screen name="Activity" component={Activity} />
