@@ -13,7 +13,7 @@ const AllotmentStatusPage = () => {
 
     const handleButtonPress = () => {
         dispatch(login());
-        navigation.navigate('Home' as never); //Redirect To the Home Page .....
+        navigation.navigate('AdminHome' as never); //Redirect To the Booking Details Page .....
     }
 
 return (

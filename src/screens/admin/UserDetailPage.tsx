@@ -8,6 +8,17 @@ const UserDetailPage = () => {
     console.log('Back button pressed');
     navigation.goBack();
   };
+  //Cancel Btn 
+  const handelCancelPress = () => {
+    console.log('Back button pressed');
+      navigation.navigate('AdminHome' as never); //Redirect To the Booking Details Page .....
+  };
+  //Next Page Btn 
+  const handelNextPress = () => {
+    console.log('Next button pressed');
+      navigation.navigate('DriverAllocation' as never); //Redirect To the Booking Details Page .....
+  };
+
   const fetchUserDetails = () => {
     // Fetch user details from API
     console.log('Fetching user details');
@@ -54,11 +65,11 @@ const UserDetailPage = () => {
 
         {/* Buttons */}
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.cancelButton}>
+          <TouchableOpacity style={styles.cancelButton} onPress={handelCancelPress}>
             <Text style={styles.cancelButtonText}>Cancel</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.nextButton}>
+          <TouchableOpacity style={styles.nextButton} onPress={handelNextPress}>
             <Text style={styles.nextButtonText}>Next Page</Text>
           </TouchableOpacity>
         </View>
